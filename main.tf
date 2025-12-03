@@ -49,7 +49,7 @@ resource "azurerm_storage_account" "storage" {
   location                 = azurerm_resource_group.rg.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
-  kind                     = "StorageV2"
+  account_kind                     = "StorageV2"
 
   // Turn on hierarchical namespace (Data Lake Gen2)
   is_hns_enabled = true
