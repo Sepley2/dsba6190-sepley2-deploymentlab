@@ -23,7 +23,7 @@ resource "azurerm_resource_group" "rg" {
 
 resource "azurerm_virtual_network" "vnet" {
   name                = "vnet-${var.class_name}-${var.student_name}-${var.environment}-${var.location}-${random_integer.deployment_id_suffix.result}"
-  address_space       = ["10.0.0.0/16"]          // rubric
+  address_space       = ["10.0.0.0/16"] // rubric
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -34,7 +34,7 @@ resource "azurerm_subnet" "subnet" {
   name                 = "subnet-${var.class_name}-${var.student_name}-${var.environment}-${var.location}-${random_integer.deployment_id_suffix.result}"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = ["10.0.2.0/24"]         // rubric
+  address_prefixes     = ["10.0.2.0/24"] // rubric
 
   // service endpoints for Storage + SQL
   service_endpoints = [
@@ -81,7 +81,7 @@ resource "azurerm_mssql_server" "sql" {
 resource "azurerm_mssql_database" "db" {
   name      = "db-${var.class_name}-${var.student_name}-${var.environment}-${random_integer.deployment_id_suffix.result}"
   server_id = azurerm_mssql_server.sql.id
-  sku_name  = "Basic"   // rubric: Basic tier
+  sku_name  = "Basic" // rubric: Basic tier
 
   tags = local.tags
 }
